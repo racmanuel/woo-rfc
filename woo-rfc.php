@@ -40,3 +40,21 @@ function woo_rfc_plugin_init()
 add_action('plugins_loaded', 'woo_rfc_plugin_init');
 
 require WOO_RFC_PLUGIN_PATH . 'includes/custom_fields.php';
+
+/**
+ * Loads Scripts
+ *
+ * @return void
+ */
+function woo_rfc_enqueue_scripts()
+{
+    wp_register_script(
+        'woo-rfc',
+        plugins_url('/assets/js/woo-rfc.js', __FILE__),
+        array('jquery'),
+        WOO_RFC_VERSION,
+        true
+    );
+    wp_enqueue_script('woo-rfc');
+}
+add_action('wp_enqueue_scripts', 'woo_rfc_enqueue_scripts');

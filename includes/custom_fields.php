@@ -21,16 +21,32 @@ function woo_rfc_custom_fields()
     # Custom Field: Check ¿Do you need a Invoice?
     woocommerce_form_field('woo_rfc_check', array(
         'type' => 'checkbox',
-        'class' => array('woo_rfc_check', 'form-row input', 'form-row'),
+        'id' => 'woo_rfc_check',
+        'class' => array('form-row input', 'form-row', 'hidden'),
         'label' => __('¿Necesitas Factura Fiscal?', 'woo-rfc'),
         'description' => __('Valido solo para México.', 'woo-rfc'),
         'required' => false,
     ));
 
+    # Custom Field: ¿Fiscal o Moral?
+    woocommerce_form_field('woo_rfc_fm', array(
+        'type' => 'select',
+        'id' => 'woo_rfc_fm',
+        'class' => array('form-row', 'form-row', 'hidden'),
+        'label' => __('¿Eres persona física o moral?', 'woo-rfc'),
+        'required' => true,
+        'options' => array(
+            '' => 'Seleccione una opcion',
+            'Persona Fisica' => 'Fisica',
+            'Persona Moral' => 'Moral',
+        ),
+    ));
+
     # Custom Field: RFC
     woocommerce_form_field('woo_rfc', array(
         'type' => 'text',
-        'class' => array('woo_rfc', 'form-row input', 'form-row', 'hidden'),
+        'id' => 'woo_rfc',
+        'class' => array('form-row input', 'form-row', 'hidden'),
         'label' => __('RFC', 'woo-rfc'),
         'description' => __('Inserta tu RFC de 13  Digitos.', 'woo-rfc'),
         'required' => true,
@@ -40,7 +56,8 @@ function woo_rfc_custom_fields()
     # Custom Field: Regimen Fiscal
     woocommerce_form_field('woo_rfc_regimen', array(
         'type' => 'select',
-        'class' => array('woo_rfc_regimen', 'form-row input', 'form-row', 'hidden'),
+        'id' => 'woo_rfc_regimen',
+        'class' => array('form-row input', 'form-row', 'hidden'),
         'label' => __('Selecciona un uso de Regimen Fiscal.'),
         'required' => true,
         'options' => array (
@@ -73,7 +90,8 @@ function woo_rfc_custom_fields()
     # Custom Field: Uso de CFDI
     woocommerce_form_field('woo_rfc_cfdi', array(
         'type' => 'select',
-        'class' => array('woo_rfc_cfdi', 'form-row input', 'form-row', 'hidden'),
+        'id' => 'woo_rfc_cfdi',
+        'class' => array('form-row input', 'form-row', 'hidden'),
         'label' => __('Selecciona un uso de CFDI.'),
         'required' => true,
         'options' => array(
@@ -85,11 +103,11 @@ function woo_rfc_custom_fields()
             5 => 'I03 - Equipo de transporte',
             6 => 'I04 - Equipo de computo y accesorios',
             7 => 'I05 - Dados, troqueles, moldes, matrices y herramental',
-            8 => 'I06 - Comunicaciones telefÃ³nicas',
+            8 => 'I06 - Comunicaciones telefonicas',
             9 => 'I07 - Comunicaciones satelitales',
             10 => 'I08 - Otra maquinaria y equipo',
-            11 => 'D01 - Honorarios mÃ©dicos, dentales y gastos hospitalarios.',
-            12 => 'D02 - Gastos mÃ©dicos por incapacidad o discapacidad',
+            11 => 'D01 - Honorarios medicos, dentales y gastos hospitalarios.',
+            12 => 'D02 - Gastos medicos por incapacidad o discapacidad',
             13 => 'D03 - Gastos funerales.',
             14 => 'D04 - Donativos.',
             15 => 'D05 - Intereses reales efectivamente pagados por creditos hipotecarios (casa habitacion).',
