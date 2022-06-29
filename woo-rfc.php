@@ -21,24 +21,58 @@
  * Prefix:      woo_rfc
  */
 
-defined('ABSPATH') || die('No script kiddies please!');
+defined( 'ABSPATH' ) || exit;
 
+/**
+ * Composer - Autoloader
+ */
+require 'vendor/autoload.php';
+
+/**
+ * 
+ */
 define('WOO_RFC_VERSION', '1.0.0');
 define('WOO_RFC_PLUGIN', __FILE__);
 define('WOO_RFC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('WOO_RFC_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
+
 require WOO_RFC_PLUGIN_PATH . 'includes/custom_fields.php';
+require WOO_RFC_PLUGIN_PATH . 'includes/woo_rfc_settings.php';
+
+
+/**
+ * Activate the plugin.
+ */
+function pluginprefix_activate() { 
+    // Trigger our function that registers the custom post type plugin.
+    pluginprefix_setup_post_type(); 
+    // Clear the permalinks after the post type has been registered.
+    flush_rewrite_rules(); 
+}
+register_activation_hook( __FILE__, 'pluginprefix_activate' );
+
+/**
+ * Deactivation hook.
+ */
+function pluginprefix_deactivate() {
+    // Unregister the post type, so the rules are no longer in memory.
+    unregister_post_type( 'book' );
+    // Clear the permalinks to remove our post type's rules from the database.
+    flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'pluginprefix_deactivate' );
+
 /**
  * Load localization files
  *
  * @return void
  */
-function woo_rfc_plugin_init()
+function woo_rfc_plugin_loaded()
 {
     load_plugin_textdomain('woo-rfc', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }
-add_action('plugins_loaded', 'woo_rfc_plugin_init');
+add_action('plugins_loaded', 'woo_rfc_plugin_loaded');
 
 
 /**
@@ -58,6 +92,3 @@ function woo_rfc_enqueue_scripts()
     wp_enqueue_script('woo-rfc');
 }
 add_action('wp_enqueue_scripts', 'woo_rfc_enqueue_scripts');
-
-
-

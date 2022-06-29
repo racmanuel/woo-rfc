@@ -1,0 +1,15 @@
+{
+    "name": "rcmanuel/woo-rfc",
+    "require": {
+        "cmb2/cmb2": "^2.10"
+    },
+    "autoload": {
+        "files": ["vendor/cmb2/cmb2/init.php"]
+    },
+    "authors": [
+        {
+            "name": "Manuel Ramirez Coronel",
+            "email": "ra_cm@outlook.com"
+        }
+    ]
+}
