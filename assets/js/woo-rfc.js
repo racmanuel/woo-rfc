@@ -21,16 +21,4 @@ jQuery(document).ready(function ($) {
             $("#woo_rfc_cfdi_field").hide(200);
         }
     });
-
-    $('#woo_rfc_fm').change(function () {
-        var type_rfc =  $('#woo_rfc_fm').val();
-        alert(type_rfc);
-
-        if(type_rfc == 'Persona Moral'){
-            alert('Selecciono 1');
-        }
-        if(type_rfc == 'Persona Fisica'){
-            alert('Selecciono 2');
-        }
-    });
 });
